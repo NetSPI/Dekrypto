@@ -33,7 +33,7 @@ class DeKrypto
     data= data.flatten.pack('C*').unpack("H*")
     data = Encoding.encode(data.join)
     url=@url.split('krypto=')[0] + "krypto=" + data
-    result = Target.get(url,{ follow_redirects: false })
+    result = Target.get(url,{:headers => {'Cookie' => ''},follow_redirects: false })
     return result.parsed_response =~ /Success/
   end
 
